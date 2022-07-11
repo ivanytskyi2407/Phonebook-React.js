@@ -3,19 +3,27 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from 'redux/auth/authOperation';
 import { Link } from 'react-router-dom';
-import { ModalWindow } from '../Modal/Modal';
 
 export const Login = () => {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [user, setUser] = useState({
+    email: '',
+    password: '',
+  });
 
-  const handleChange = ({ target: { name, value } }) => {
+  const handleChange = e => {
+    const { name, value } = e.target;
     switch (name) {
       case 'email':
-        return setEmail(value);
+        return setUser(prev => ({
+          ...prev,
+          [name]: value,
+        }));
       case 'password':
-        return setPassword(value);
+        return setUser(prev => ({
+          ...prev,
+          [name]: value,
+        }));
       default:
         return;
     }
@@ -23,17 +31,12 @@ export const Login = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(login({ email, password }));
-    reset();
-  };
-
-  const reset = () => {
-    setEmail('');
-    setPassword('');
+    dispatch(login(user));
+    setUser({ email: '', password: '' });
   };
 
   return (
-    <ModalWindow>
+    <div>
       <h2 className={s.title}>Login</h2>
       <form className={s.form} onSubmit={handleSubmit}>
         <input
@@ -46,7 +49,6 @@ export const Login = () => {
         />
         <input
           onChange={handleChange}
-          value={password}
           name="password"
           className={s.input}
           type="password"
@@ -60,6 +62,6 @@ export const Login = () => {
           &#8594; to Register
         </Link>
       </form>
-    </ModalWindow>
+    </div>
   );
 };

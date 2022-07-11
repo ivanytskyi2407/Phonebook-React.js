@@ -3,22 +3,33 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/authOperation';
 import { Link } from 'react-router-dom';
-import { ModalWindow } from '../Modal/Modal';
 
 export const Register = () => {
   const dispatch = useDispatch();
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [user, setUser] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
 
-  const handleChange = ({ target: { name, value } }) => {
+  const handleChange = e => {
+    const { name, value } = e.target;
     switch (name) {
       case 'name':
-        return setName(value);
+        return setUser(prev => ({
+          ...prev,
+          [name]: value,
+        }));
       case 'email':
-        return setEmail(value);
+        return setUser(prev => ({
+          ...prev,
+          [name]: value,
+        }));
       case 'password':
-        return setPassword(value);
+        return setUser(prev => ({
+          ...prev,
+          [name]: value,
+        }));
       default:
         return;
     }
@@ -26,23 +37,16 @@ export const Register = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(register({ name, email, password }));
-    reset();
-  };
-
-  const reset = () => {
-    setName('');
-    setEmail('');
-    setPassword('');
+    dispatch(register(user));
+    setUser({ name: '', email: '', password: '' });
   };
 
   return (
-    <ModalWindow>
+    <div>
       <h2 className={s.title}>Register</h2>
       <form className={s.form} onSubmit={handleSubmit}>
         <input
           onChange={handleChange}
-          value={name}
           name="name"
           className={s.input}
           type="name "
@@ -58,7 +62,6 @@ export const Register = () => {
         />
         <input
           onChange={handleChange}
-          value={password}
           name="password"
           className={s.input}
           type="password"
@@ -72,6 +75,6 @@ export const Register = () => {
           &#8594; to Login
         </Link>
       </form>
-    </ModalWindow>
+    </div>
   );
 };

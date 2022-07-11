@@ -9,6 +9,8 @@ const setPending = state => {
   state.status = 'loading';
   state.error = null;
 };
+
+
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState: { items: [], filter: '', status: null, error: null },
