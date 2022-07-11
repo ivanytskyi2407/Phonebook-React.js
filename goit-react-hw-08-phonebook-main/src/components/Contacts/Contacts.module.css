@@ -1,0 +1,71 @@
+.div {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.item {
+  margin-bottom: 10px;
+}
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+/* add */
+.form {
+  display: block;
+  box-sizing: border-box;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.input {
+  display: block;
+  width: 230px;
+  border: none;
+  border-bottom: 2px solid #008cba;
+  padding: 10px;
+  transition: 0.3s;
+  margin-right: 0%;
+}
+.input::placeholder {
+  color: #212529;
+  opacity: 0.4;
+}
+.button {
+  display: block;
+  margin-top: 10px;
+  width: 250px;
+  padding: 10px;
+  background-color: white;
+  color: black;
+  border: 2px solid #008cba;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 16px;
+  transition: 0.3s;
+}
+.button:hover {
+  background-color: #008cba;
+  color: white;
+}
+
+.buttonDelete {
+  margin-right: 5px;
+  display: inline-block;
+  padding: 5px 5px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  background-color: white;
+  border: 2px solid #ee1a1a;
+  border-radius: 15px;
+  font-weight: 600;
+}
+.buttonDelete:hover {
+  background-color: #ee1a1a;
+  color: white;
+}
